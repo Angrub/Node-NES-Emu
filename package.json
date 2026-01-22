@@ -20,7 +20,8 @@
 	"main": "src/index.ts",
 	"scripts": {
 		"dev": "vite-node  src/index.ts",
-		"test": "vite-node src/__test__/index.test.ts",
+		"test": "vitest --pool=threads",
+		"coverage": "vitest run --coverage",
 		"check": "biome check --write"
 	},
 	"dependencies": {
@@ -31,6 +32,7 @@
 		"@types/node": "^25.0.3",
 		"tsconfig-paths": "^4.2.0",
 		"vite": "^7.3.0",
-		"vite-node": "^5.2.0"
+		"vite-node": "^5.2.0",
+		"vitest": "^4.0.16"
 	}
 }
