@@ -218,6 +218,18 @@ export class MOS6502 {
 		}
 	}
 
+	private setZeroAndNegativeFlag(register: number) {
+		this.processStatus &= 0b01111101;
+
+		if (register === 0x0) {
+			this.processStatus |= 0b00000010;
+		}
+
+		if ((register & 0b10000000) !== 0) {
+			this.processStatus |= 0b10000000;
+		}
+	}
+
 	private BRK() {
 		this.cpuHalted = true;
 	}
@@ -245,18 +257,6 @@ export class MOS6502 {
 		this.setZeroAndNegativeFlag(this.Y);
 	}
 
-	private setZeroAndNegativeFlag(register: number) {
-		this.processStatus &= 0b01111101;
-
-		if (register === 0x0) {
-			this.processStatus |= 0b00000010;
-		}
-
-		if ((register & 0b10000000) !== 0) {
-			this.processStatus |= 0b10000000;
-		}
-	}
-
 	private STA(address: number) {
 		this.memoryMapProxy(address, this.accumulator);
 	}
@@ -268,13 +268,58 @@ export class MOS6502 {
 	private STY(address: number) {
 		this.memoryMapProxy(address, this.Y);
 	}
-}
 
-/**
- * TODO:
- *
- * 1- Implementar lectura y escritura de la ram - check
- * 2- Implementar Lectura de la rom - check
- * 3- Aprender sobre los modos de direccionamiento - check
- * 4- Crear pruebas unitarias para cada instrucción
- */
+	// Register Transfers
+
+	private TAX() {
+		this.X = this.accumulator;
+		this.setZeroAndNegativeFlag(this.X);
+	}
+
+	private TAY() {
+		this.Y = this.accumulator; 
+		this.setZeroAndNegativeFlag(this.Y);
+	}
+
+	private TXA() {
+		this.accumulator = this.X;
+		this.setZeroAndNegativeFlag(this.accumulator);
+	}
+	
+	private TYA() {
+		this.accumulator = this.Y;
+		this.setZeroAndNegativeFlag(this.accumulator);
+	}
+
+	// Stack Operations
+	
+	private TSX() {
+		this.X = this.stackPointer;
+		this.setZeroAndNegativeFlag(this.X);
+	}
+
+	private TXS() {
+		this.stackPointer = this.X;
+	}
+
+	private PHA() {
+		this.memoryMapProxy(this.stackPointer, this.accumulator);
+		this.stackPointer--;
+	}
+
+	private PHP() {
+		this.memoryMapProxy(this.stackPointer, this.processStatus);
+		this.stackPointer--;
+	}
+
+	private PLA() {
+		this.accumulator = this.memoryMapProxy(this.stackPointer + 1);
+		this.setZeroAndNegativeFlag(this.accumulator);
+		this.stackPointer++;
+	}
+
+	private PLP() {
+		this.processStatus = this.memoryMapProxy(this.stackPointer + 1);
+		this.stackPointer++;
+	}
+}

@@ -5,7 +5,17 @@ export type MOS6502instruction =
 	| "LDY"
 	| "STA"
 	| "STX"
-	| "STY";
+	| "STY"
+	| "TAX"
+	| "TAY"
+	| "TXA"
+	| "TYA"
+	| "TSX"
+	| "TXS"
+	| "PHA"
+	| "PHP"
+	| "PLA"
+	| "PLP"
 
 export type MOS6502SnapShot = {
 	cpuHalted: boolean;
@@ -84,5 +94,35 @@ export const Opcodes = {
 		ZERO_PAGE: 0x84,
 		ZERO_PAGE_X: 0x94,
 		ABSOLUTE: 0x8c,
-	}
+	},
+	TAX: {
+		IMPLICIT: 0xaa
+	},
+	TAY: {
+		IMPLICIT: 0xa8
+	},
+	TXA: {
+		IMPLICIT: 0x8a
+	},
+	TYA: {
+		IMPLICIT: 0x98
+	},
+	TSX: {
+		IMPLICIT: 0xba
+	},
+	TXS: {
+		IMPLICIT: 0x9a
+	},
+	PHA: {
+		IMPLICIT: 0x48
+	},
+	PHP: {
+		IMPLICIT: 0x08
+	},
+	PLA: {
+		IMPLICIT: 0x68
+	},
+	PLP: {
+		IMPLICIT: 0x28
+	},
 };

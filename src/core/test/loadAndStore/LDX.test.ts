@@ -7,25 +7,10 @@ beforeEach(() => {
 	microprocesor.reset();
 });
 
-describe("LDY", () => {
-	it("Without flag", () => {
-		const rom = new Uint8Array([
-			Opcodes.LDY.IMMEDIATE,
-			0x0f,
-			Opcodes.BRK.IMPLICIT,
-		]);
-		
-		microprocesor.load(rom);
-		microprocesor.run();
-
-		const snapshot = microprocesor.createSnapshot();
-
-		expect(snapshot.Y).toBe(15);
-	});
-
+describe("LDX", () => {
 	it("Zero flag", () => {
 		const rom = new Uint8Array([
-			Opcodes.LDY.IMMEDIATE,
+			Opcodes.LDX.IMMEDIATE,
 			0x00,
 			Opcodes.BRK.IMPLICIT,
 		]);
@@ -36,12 +21,12 @@ describe("LDY", () => {
 		const snapshot = microprocesor.createSnapshot();
 
 		expect(snapshot.processStatus).toBe(0b00100010);
-		expect(snapshot.Y).toBe(0);
+		expect(snapshot.X).toBe(0);
 	});
 
 	it("Negative flag", () => {
 		const rom = new Uint8Array([
-			Opcodes.LDY.IMMEDIATE,
+			Opcodes.LDX.IMMEDIATE,
 			0x80,
 			Opcodes.BRK.IMPLICIT,
 		]);
@@ -52,12 +37,12 @@ describe("LDY", () => {
 		const snapshot = microprocesor.createSnapshot();
 
 		expect(snapshot.processStatus).toBe(0b10100000);
-		expect(snapshot.Y).toBe(128);
+		expect(snapshot.X).toBe(128);
 	});
 
     it("IMMEDIATE", () => {
 		const rom = new Uint8Array([
-			Opcodes.LDY.IMMEDIATE,
+			Opcodes.LDX.IMMEDIATE,
 			0x40,
 			Opcodes.BRK.IMPLICIT,
 		]);
@@ -67,12 +52,12 @@ describe("LDY", () => {
 
 		const snapshot = microprocesor.createSnapshot();
 
-		expect(snapshot.Y).toBe(64);
+		expect(snapshot.X).toBe(64);
 	});
 
     it("ZERO_PAGE", () => {
 		const rom = new Uint8Array([
-			Opcodes.LDY.ZERO_PAGE,
+			Opcodes.LDX.ZERO_PAGE,
 			0x0f,
 			Opcodes.BRK.IMPLICIT,
 		]);
@@ -83,14 +68,14 @@ describe("LDY", () => {
 
 		const snapshot = microprocesor.createSnapshot();
 
-		expect(snapshot.Y).toBe(64);
+		expect(snapshot.X).toBe(64);
 	});
 
     it("ZERO_PAGE_Y", () => {
 		const rom = new Uint8Array([
-            Opcodes.LDX.IMMEDIATE,
+            Opcodes.LDY.IMMEDIATE,
             0x01,
-			Opcodes.LDY.ZERO_PAGE_X,
+			Opcodes.LDX.ZERO_PAGE_Y,
 			0x0f,
 			Opcodes.BRK.IMPLICIT,
 		]);
@@ -101,12 +86,12 @@ describe("LDY", () => {
 
 		const snapshot = microprocesor.createSnapshot();
         
-		expect(snapshot.Y).toBe(64);
+		expect(snapshot.X).toBe(64);
 	});
 
     it("ABSOLUTE", () => {
 		const rom = new Uint8Array([
-			Opcodes.LDY.ABSOLUTE,
+			Opcodes.LDX.ABSOLUTE,
 			0xee,
             0x02,
 			Opcodes.BRK.IMPLICIT,
@@ -118,14 +103,14 @@ describe("LDY", () => {
 
 		const snapshot = microprocesor.createSnapshot();
 
-		expect(snapshot.Y).toBe(64);
+		expect(snapshot.X).toBe(64);
 	});
 
     it("ABSOLUTE_Y", () => {
 		const rom = new Uint8Array([
-			Opcodes.LDX.IMMEDIATE,
+			Opcodes.LDY.IMMEDIATE,
             0x05,
-            Opcodes.LDY.ABSOLUTE_X,
+            Opcodes.LDX.ABSOLUTE_Y,
 			0xee,
             0x02,
 			Opcodes.BRK.IMPLICIT,
@@ -137,6 +122,6 @@ describe("LDY", () => {
 
 		const snapshot = microprocesor.createSnapshot();
 
-		expect(snapshot.Y).toBe(64);
+		expect(snapshot.X).toBe(64);
 	});
 });

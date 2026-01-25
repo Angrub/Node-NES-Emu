@@ -1,4 +1,4 @@
-import {  AddressingMode, type MOS6502instruction } from "./types.js";
+import { AddressingMode, type MOS6502instruction, Opcodes } from "./types.js";
 
 export type InstructionReference = {
 	instruction: MOS6502instruction;
@@ -6,42 +6,180 @@ export type InstructionReference = {
 };
 
 export const instructionSetReference: [number, InstructionReference][] = [
-	[0x00, { instruction: "BRK", addressingMode: AddressingMode.IMPLICIT }],
+	[
+		Opcodes.BRK.IMPLICIT,
+		{ instruction: "BRK", addressingMode: AddressingMode.IMPLICIT },
+	],
 	// LDA
-    [0xa9, { instruction: "LDA", addressingMode: AddressingMode.IMMEDIATE }],
-	[0xa5, { instruction: "LDA", addressingMode: AddressingMode.ZERO_PAGE }],
-	[0xb5, { instruction: "LDA", addressingMode: AddressingMode.ZERO_PAGE_X }],
-	[0xad, { instruction: "LDA", addressingMode: AddressingMode.ABSOLUTE }],
-	[0xbd, { instruction: "LDA", addressingMode: AddressingMode.ABSOLUTE_X }],
-	[0xb9, { instruction: "LDA", addressingMode: AddressingMode.ABSOLUTE_Y }],
-	[0xa1, { instruction: "LDA", addressingMode: AddressingMode.INDIRECT_X }],
-	[0xb1, { instruction: "LDA", addressingMode: AddressingMode.INDIRECT_Y }],
+	[
+		Opcodes.LDA.IMMEDIATE,
+		{ instruction: "LDA", addressingMode: AddressingMode.IMMEDIATE },
+	],
+	[
+		Opcodes.LDA.ZERO_PAGE,
+		{ instruction: "LDA", addressingMode: AddressingMode.ZERO_PAGE },
+	],
+	[
+		Opcodes.LDA.ZERO_PAGE_X,
+		{ instruction: "LDA", addressingMode: AddressingMode.ZERO_PAGE_X },
+	],
+	[
+		Opcodes.LDA.ABSOLUTE,
+		{ instruction: "LDA", addressingMode: AddressingMode.ABSOLUTE },
+	],
+	[
+		Opcodes.LDA.ABSOLUTE_X,
+		{ instruction: "LDA", addressingMode: AddressingMode.ABSOLUTE_X },
+	],
+	[
+		Opcodes.LDA.ABSOLUTE_Y,
+		{ instruction: "LDA", addressingMode: AddressingMode.ABSOLUTE_Y },
+	],
+	[
+		Opcodes.LDA.INDIRECT_X,
+		{ instruction: "LDA", addressingMode: AddressingMode.INDIRECT_X },
+	],
+	[
+		Opcodes.LDA.INDIRECT_Y,
+		{ instruction: "LDA", addressingMode: AddressingMode.INDIRECT_Y },
+	],
 	// LDX
-    [0xa2, { instruction: "LDX", addressingMode: AddressingMode.IMMEDIATE }],
-	[0xa6, { instruction: "LDX", addressingMode: AddressingMode.ZERO_PAGE }],
-	[0xb6, { instruction: "LDX", addressingMode: AddressingMode.ZERO_PAGE_Y }],
-	[0xae, { instruction: "LDX", addressingMode: AddressingMode.ABSOLUTE }],
-	[0xbe, { instruction: "LDX", addressingMode: AddressingMode.ABSOLUTE_Y }],
-    // LDY
-    [0xa0, { instruction: "LDY", addressingMode: AddressingMode.IMMEDIATE }],
-	[0xa4, { instruction: "LDY", addressingMode: AddressingMode.ZERO_PAGE }],
-	[0xb4, { instruction: "LDY", addressingMode: AddressingMode.ZERO_PAGE_X }],
-	[0xac, { instruction: "LDY", addressingMode: AddressingMode.ABSOLUTE }],
-	[0xbc, { instruction: "LDY", addressingMode: AddressingMode.ABSOLUTE_X }],
-    // STA
-    [0x85, { instruction: "STA", addressingMode: AddressingMode.ZERO_PAGE }],
-	[0x95, { instruction: "STA", addressingMode: AddressingMode.ZERO_PAGE_X }],
-	[0x8d, { instruction: "STA", addressingMode: AddressingMode.ABSOLUTE }],
-	[0x9d, { instruction: "STA", addressingMode: AddressingMode.ABSOLUTE_X }],
-	[0x99, { instruction: "STA", addressingMode: AddressingMode.ABSOLUTE_Y }],
-	[0x81, { instruction: "STA", addressingMode: AddressingMode.INDIRECT_X }],
-	[0x91, { instruction: "STA", addressingMode: AddressingMode.INDIRECT_Y }],
+	[
+		Opcodes.LDX.IMMEDIATE,
+		{ instruction: "LDX", addressingMode: AddressingMode.IMMEDIATE },
+	],
+	[
+		Opcodes.LDX.ZERO_PAGE,
+		{ instruction: "LDX", addressingMode: AddressingMode.ZERO_PAGE },
+	],
+	[
+		Opcodes.LDX.ZERO_PAGE_Y,
+		{ instruction: "LDX", addressingMode: AddressingMode.ZERO_PAGE_Y },
+	],
+	[
+		Opcodes.LDX.ABSOLUTE,
+		{ instruction: "LDX", addressingMode: AddressingMode.ABSOLUTE },
+	],
+	[
+		Opcodes.LDX.ABSOLUTE_Y,
+		{ instruction: "LDX", addressingMode: AddressingMode.ABSOLUTE_Y },
+	],
+	// LDY
+	[
+		Opcodes.LDY.IMMEDIATE,
+		{ instruction: "LDY", addressingMode: AddressingMode.IMMEDIATE },
+	],
+	[
+		Opcodes.LDY.ZERO_PAGE,
+		{ instruction: "LDY", addressingMode: AddressingMode.ZERO_PAGE },
+	],
+	[
+		Opcodes.LDY.ZERO_PAGE_X,
+		{ instruction: "LDY", addressingMode: AddressingMode.ZERO_PAGE_X },
+	],
+	[
+		Opcodes.LDY.ABSOLUTE,
+		{ instruction: "LDY", addressingMode: AddressingMode.ABSOLUTE },
+	],
+	[
+		Opcodes.LDY.ABSOLUTE_X,
+		{ instruction: "LDY", addressingMode: AddressingMode.ABSOLUTE_X },
+	],
+	// STA
+	[
+		Opcodes.STA.ZERO_PAGE,
+		{ instruction: "STA", addressingMode: AddressingMode.ZERO_PAGE },
+	],
+	[
+		Opcodes.STA.ZERO_PAGE_X,
+		{ instruction: "STA", addressingMode: AddressingMode.ZERO_PAGE_X },
+	],
+	[
+		Opcodes.STA.ABSOLUTE,
+		{ instruction: "STA", addressingMode: AddressingMode.ABSOLUTE },
+	],
+	[
+		Opcodes.STA.ABSOLUTE_X,
+		{ instruction: "STA", addressingMode: AddressingMode.ABSOLUTE_X },
+	],
+	[
+		Opcodes.STA.ABSOLUTE_Y,
+		{ instruction: "STA", addressingMode: AddressingMode.ABSOLUTE_Y },
+	],
+	[
+		Opcodes.STA.INDIRECT_X,
+		{ instruction: "STA", addressingMode: AddressingMode.INDIRECT_X },
+	],
+	[
+		Opcodes.STA.INDIRECT_Y,
+		{ instruction: "STA", addressingMode: AddressingMode.INDIRECT_Y },
+	],
 	// STX
-	[0x86, { instruction: "STX", addressingMode: AddressingMode.ZERO_PAGE }],
-	[0x96, { instruction: "STX", addressingMode: AddressingMode.ZERO_PAGE_Y }],
-	[0x8e, { instruction: "STX", addressingMode: AddressingMode.ABSOLUTE }],
+	[
+		Opcodes.STX.ZERO_PAGE,
+		{ instruction: "STX", addressingMode: AddressingMode.ZERO_PAGE },
+	],
+	[
+		Opcodes.STX.ZERO_PAGE_Y,
+		{ instruction: "STX", addressingMode: AddressingMode.ZERO_PAGE_Y },
+	],
+	[
+		Opcodes.STX.ABSOLUTE,
+		{ instruction: "STX", addressingMode: AddressingMode.ABSOLUTE },
+	],
 	// STY
-	[0x84, { instruction: "STY", addressingMode: AddressingMode.ZERO_PAGE }],
-	[0x94, { instruction: "STY", addressingMode: AddressingMode.ZERO_PAGE_X }],
-	[0x8c, { instruction: "STY", addressingMode: AddressingMode.ABSOLUTE }],
+	[
+		Opcodes.STY.ZERO_PAGE,
+		{ instruction: "STY", addressingMode: AddressingMode.ZERO_PAGE },
+	],
+	[
+		Opcodes.STY.ZERO_PAGE_X,
+		{ instruction: "STY", addressingMode: AddressingMode.ZERO_PAGE_X },
+	],
+	[
+		Opcodes.STY.ABSOLUTE,
+		{ instruction: "STY", addressingMode: AddressingMode.ABSOLUTE },
+	],
+	// Register Transfers
+	[
+		Opcodes.TAX.IMPLICIT,
+		{ instruction: "TAX", addressingMode: AddressingMode.IMPLICIT },
+	],
+	[
+		Opcodes.TAY.IMPLICIT,
+		{ instruction: "TAY", addressingMode: AddressingMode.IMPLICIT },
+	],
+	[
+		Opcodes.TXA.IMPLICIT,
+		{ instruction: "TXA", addressingMode: AddressingMode.IMPLICIT },
+	],
+	[
+		Opcodes.TYA.IMPLICIT,
+		{ instruction: "TYA", addressingMode: AddressingMode.IMPLICIT },
+	],
+	// Stack Operations
+	[
+		Opcodes.TSX.IMPLICIT,
+		{ instruction: "TSX", addressingMode: AddressingMode.IMPLICIT },
+	],
+	[
+		Opcodes.TXS.IMPLICIT,
+		{ instruction: "TXS", addressingMode: AddressingMode.IMPLICIT },
+	],
+	[
+		Opcodes.PHA.IMPLICIT,
+		{ instruction: "PHA", addressingMode: AddressingMode.IMPLICIT },
+	],
+	[
+		Opcodes.PHP.IMPLICIT,
+		{ instruction: "PHP", addressingMode: AddressingMode.IMPLICIT },
+	],
+	[
+		Opcodes.PLA.IMPLICIT,
+		{ instruction: "PLA", addressingMode: AddressingMode.IMPLICIT },
+	],
+	[
+		Opcodes.PLP.IMPLICIT,
+		{ instruction: "PLP", addressingMode: AddressingMode.IMPLICIT },
+	],
 ];
