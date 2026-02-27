@@ -1,4 +1,5 @@
-import { AddressingMode, type MOS6502instruction, Opcodes } from "./types.js";
+import { Opcodes } from "./opcodes.js";
+import { AddressingMode, type MOS6502instruction } from "./types.js";
 
 export type InstructionReference = {
 	instruction: MOS6502instruction;
@@ -6,11 +7,11 @@ export type InstructionReference = {
 };
 
 export const instructionSetReference: [number, InstructionReference][] = [
+	// Load and Store Operations
 	[
 		Opcodes.BRK.IMPLICIT,
 		{ instruction: "BRK", addressingMode: AddressingMode.IMPLICIT },
 	],
-	// LDA
 	[
 		Opcodes.LDA.IMMEDIATE,
 		{ instruction: "LDA", addressingMode: AddressingMode.IMMEDIATE },
@@ -43,7 +44,6 @@ export const instructionSetReference: [number, InstructionReference][] = [
 		Opcodes.LDA.INDIRECT_Y,
 		{ instruction: "LDA", addressingMode: AddressingMode.INDIRECT_Y },
 	],
-	// LDX
 	[
 		Opcodes.LDX.IMMEDIATE,
 		{ instruction: "LDX", addressingMode: AddressingMode.IMMEDIATE },
@@ -64,7 +64,6 @@ export const instructionSetReference: [number, InstructionReference][] = [
 		Opcodes.LDX.ABSOLUTE_Y,
 		{ instruction: "LDX", addressingMode: AddressingMode.ABSOLUTE_Y },
 	],
-	// LDY
 	[
 		Opcodes.LDY.IMMEDIATE,
 		{ instruction: "LDY", addressingMode: AddressingMode.IMMEDIATE },
@@ -85,7 +84,6 @@ export const instructionSetReference: [number, InstructionReference][] = [
 		Opcodes.LDY.ABSOLUTE_X,
 		{ instruction: "LDY", addressingMode: AddressingMode.ABSOLUTE_X },
 	],
-	// STA
 	[
 		Opcodes.STA.ZERO_PAGE,
 		{ instruction: "STA", addressingMode: AddressingMode.ZERO_PAGE },
@@ -114,7 +112,6 @@ export const instructionSetReference: [number, InstructionReference][] = [
 		Opcodes.STA.INDIRECT_Y,
 		{ instruction: "STA", addressingMode: AddressingMode.INDIRECT_Y },
 	],
-	// STX
 	[
 		Opcodes.STX.ZERO_PAGE,
 		{ instruction: "STX", addressingMode: AddressingMode.ZERO_PAGE },
@@ -127,7 +124,6 @@ export const instructionSetReference: [number, InstructionReference][] = [
 		Opcodes.STX.ABSOLUTE,
 		{ instruction: "STX", addressingMode: AddressingMode.ABSOLUTE },
 	],
-	// STY
 	[
 		Opcodes.STY.ZERO_PAGE,
 		{ instruction: "STY", addressingMode: AddressingMode.ZERO_PAGE },
@@ -182,4 +178,110 @@ export const instructionSetReference: [number, InstructionReference][] = [
 		Opcodes.PLP.IMPLICIT,
 		{ instruction: "PLP", addressingMode: AddressingMode.IMPLICIT },
 	],
+	// Logical Operations
+	[
+		Opcodes.AND.IMMEDIATE,
+		{ instruction: "AND", addressingMode: AddressingMode.IMMEDIATE }
+	],
+	[
+		Opcodes.AND.ZERO_PAGE,
+		{ instruction: "AND", addressingMode: AddressingMode.ZERO_PAGE }
+	],
+	[
+		Opcodes.AND.ZERO_PAGE_X,
+		{ instruction: "AND", addressingMode: AddressingMode.ZERO_PAGE_X }
+	],
+	[
+		Opcodes.AND.ABSOLUTE,
+		{ instruction: "AND", addressingMode: AddressingMode.ABSOLUTE }
+	],
+	[
+		Opcodes.AND.ABSOLUTE_X,
+		{ instruction: "AND", addressingMode: AddressingMode.ABSOLUTE_X }
+	],
+	[
+		Opcodes.AND.ABSOLUTE_Y,
+		{ instruction: "AND", addressingMode: AddressingMode.ABSOLUTE_Y }
+	],
+	[
+		Opcodes.AND.INDIRECT_X,
+		{ instruction: "AND", addressingMode: AddressingMode.INDIRECT_X }
+	],
+	[
+		Opcodes.AND.INDIRECT_Y,
+		{ instruction: "AND", addressingMode: AddressingMode.INDIRECT_Y }
+	],
+	[
+		Opcodes.EOR.IMMEDIATE,
+		{ instruction: "EOR", addressingMode: AddressingMode.IMMEDIATE }
+	],
+	[
+		Opcodes.EOR.ZERO_PAGE,
+		{ instruction: "EOR", addressingMode: AddressingMode.ZERO_PAGE }
+	],
+	[
+		Opcodes.EOR.ZERO_PAGE_X,
+		{ instruction: "EOR", addressingMode: AddressingMode.ZERO_PAGE_X }
+	],
+	[
+		Opcodes.EOR.ABSOLUTE,
+		{ instruction: "EOR", addressingMode: AddressingMode.ABSOLUTE }
+	],
+	[
+		Opcodes.EOR.ABSOLUTE_X,
+		{ instruction: "EOR", addressingMode: AddressingMode.ABSOLUTE_X }
+	],
+	[
+		Opcodes.EOR.ABSOLUTE_Y,
+		{ instruction: "EOR", addressingMode: AddressingMode.ABSOLUTE_Y }
+	],
+	[
+		Opcodes.EOR.INDIRECT_X,
+		{ instruction: "EOR", addressingMode: AddressingMode.INDIRECT_X }
+	],
+	[
+		Opcodes.EOR.INDIRECT_Y,
+		{ instruction: "EOR", addressingMode: AddressingMode.INDIRECT_Y }
+	],
+	[
+		Opcodes.ORA.IMMEDIATE,
+		{ instruction: "ORA", addressingMode: AddressingMode.IMMEDIATE }
+	],
+	[
+		Opcodes.ORA.ZERO_PAGE,
+		{ instruction: "ORA", addressingMode: AddressingMode.ZERO_PAGE }
+	],
+	[
+		Opcodes.ORA.ZERO_PAGE_X,
+		{ instruction: "ORA", addressingMode: AddressingMode.ZERO_PAGE_X }
+	],
+	[
+		Opcodes.ORA.ABSOLUTE,
+		{ instruction: "ORA", addressingMode: AddressingMode.ABSOLUTE }
+	],
+	[
+		Opcodes.ORA.ABSOLUTE_X,
+		{ instruction: "ORA", addressingMode: AddressingMode.ABSOLUTE_X }
+	],
+	[
+		Opcodes.ORA.ABSOLUTE_Y,
+		{ instruction: "ORA", addressingMode: AddressingMode.ABSOLUTE_Y }
+	],
+	[
+		Opcodes.ORA.INDIRECT_X,
+		{ instruction: "ORA", addressingMode: AddressingMode.INDIRECT_X }
+	],
+	[
+		Opcodes.ORA.INDIRECT_Y,
+		{ instruction: "ORA", addressingMode: AddressingMode.INDIRECT_Y }
+	],
+	[
+		Opcodes.BIT.ZERO_PAGE,
+		{ instruction: "BIT", addressingMode: AddressingMode.ZERO_PAGE }
+	],
+	[
+		Opcodes.BIT.ABSOLUTE,
+		{ instruction: "BIT", addressingMode: AddressingMode.ABSOLUTE }
+	],
+	// Arithmetic Operations
 ];

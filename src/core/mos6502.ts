@@ -74,7 +74,7 @@ export class MOS6502 {
 		} else if (address >= 0x4020 && address <= 0xffff) {
 			// const adjustedAddress = address - 0x4020;
 			const adjustedAddress = address - 0x8000;
-			
+
 			if (value !== undefined) {
 				if (address >= 0x8000) return 0x0;
 
@@ -113,7 +113,7 @@ export class MOS6502 {
 			console.warn("Use nextStep or prevStep while debug mode is enabled");
 			return;
 		}
-		
+
 		// microprocessor loop
 		while (!this.cpuHalted) {
 			const instruction = this.memoryMapProxy(this.programCounter);
@@ -125,7 +125,9 @@ export class MOS6502 {
 			}
 
 			// exec instruction
-			this[methodRef.instruction](this.resolveAddressingMode(methodRef.addressingMode));
+			this[methodRef.instruction](
+				this.resolveAddressingMode(methodRef.addressingMode),
+			);
 		}
 	}
 
@@ -277,7 +279,7 @@ export class MOS6502 {
 	}
 
 	private TAY() {
-		this.Y = this.accumulator; 
+		this.Y = this.accumulator;
 		this.setZeroAndNegativeFlag(this.Y);
 	}
 
@@ -285,14 +287,14 @@ export class MOS6502 {
 		this.accumulator = this.X;
 		this.setZeroAndNegativeFlag(this.accumulator);
 	}
-	
+
 	private TYA() {
 		this.accumulator = this.Y;
 		this.setZeroAndNegativeFlag(this.accumulator);
 	}
 
 	// Stack Operations
-	
+
 	private TSX() {
 		this.X = this.stackPointer;
 		this.setZeroAndNegativeFlag(this.X);
@@ -321,5 +323,94 @@ export class MOS6502 {
 	private PLP() {
 		this.processStatus = this.memoryMapProxy(this.stackPointer + 1);
 		this.stackPointer++;
+	}
+
+	// Logical Operations
+
+	private AND(address: number) {
+		const value = this.memoryMapProxy(address);
+		this.accumulator &= value;
+
+		this.setZeroAndNegativeFlag(this.accumulator);
+	}
+
+	private EOR(address: number) {
+		const value = this.memoryMapProxy(address);
+		this.accumulator ^= value;
+
+		this.setZeroAndNegativeFlag(this.accumulator);
+	}
+
+	private ORA(address: number) {
+		const value = this.memoryMapProxy(address);
+		this.accumulator |= value;
+
+		this.setZeroAndNegativeFlag(this.accumulator);
+	}
+
+	private BIT(address: number) {
+		const value = this.memoryMapProxy(address);
+		const result = this.accumulator & value;
+
+		if (result === 0) {
+			this.processStatus |= 0b00000010;
+		}
+
+		this.processStatus |= value & 0b11000000;
+	}
+
+	// Arithmetic Operations
+
+	private ADC(address: number) {
+		const value = this.memoryMapProxy(address);
+		let hasCarry = false;
+
+		const result = this.accumulator + value + (this.processStatus & 0b00000001);
+
+		if (result > 255) {
+			hasCarry = true;
+			this.processStatus |= 0b00000001;
+		} else {
+			this.processStatus &= 0b11111110;
+		}
+
+		const overflow =
+			~(this.accumulator ^ value) & (this.accumulator ^ result) & 0b10000000;
+
+		if (overflow !== 0) {
+			this.processStatus |= 0b01000000;
+		} else {
+			this.processStatus |= 0b10111111;
+		}
+
+		this.accumulator = hasCarry ? result & 0xff : result;
+		this.setZeroAndNegativeFlag(this.accumulator);
+	}
+
+	private SBC(address: number) {
+		const value = this.memoryMapProxy(address);
+		let hasCarry = false;
+
+		const result =
+			this.accumulator - value - (1 - (this.processStatus & 0b00000001));
+
+		if (result >= 0) {
+			hasCarry = true;
+			this.processStatus |= 0b00000001;
+		} else {
+			this.processStatus &= 0b11111110;
+		}
+
+		const overflow =
+			~(this.accumulator ^ value) & (this.accumulator ^ result) & 0b10000000;
+
+		if (overflow !== 0) {
+			this.processStatus |= 0b01000000;
+		} else {
+			this.processStatus |= 0b10111111;
+		}
+
+		this.accumulator = !hasCarry ? 0 : result;
+		this.setZeroAndNegativeFlag(this.accumulator);
 	}
 }
