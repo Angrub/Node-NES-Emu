@@ -135,4 +135,24 @@ export const Opcodes = {
 		INDIRECT_X: 0xe1,
 		INDIRECT_Y: 0xf1,
 	},
+	CPM: {
+		IMMEDIATE: 0xc9,
+		ZERO_PAGE: 0xc5,
+		ZERO_PAGE_X: 0xd5,
+		ABSOLUTE: 0xcd,
+		ABSOLUTE_X: 0xdd,
+		ABSOLUTE_Y: 0xd9,
+		INDIRECT_X: 0xc1,
+		INDIRECT_Y: 0xd1,
+	},
+	CPX: {
+		IMMEDIATE: 0xe0,
+		ZERO_PAGE: 0xe4,
+		ABSOLUTE: 0xec,
+	},
+	CPY: {
+		IMMEDIATE: 0xc0,
+		ZERO_PAGE: 0xc4,
+		ABSOLUTE: 0xcc,
+	}
 };

@@ -21,7 +21,10 @@ export type MOS6502instruction =
 	| "ORA"
 	| "BIT"
 	| "ADC"
-	| "SBC";
+	| "SBC"
+	| "CPM"
+	| "CPX"
+	| "CPY";
 
 export type MOS6502SnapShot = {
 	cpuHalted: boolean;

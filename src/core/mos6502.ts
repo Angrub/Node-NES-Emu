@@ -380,7 +380,7 @@ export class MOS6502 {
 		if (overflow !== 0) {
 			this.processStatus |= 0b01000000;
 		} else {
-			this.processStatus |= 0b10111111;
+			this.processStatus &= 0b10111111;
 		}
 
 		this.accumulator = hasCarry ? result & 0xff : result;
@@ -407,10 +407,44 @@ export class MOS6502 {
 		if (overflow !== 0) {
 			this.processStatus |= 0b01000000;
 		} else {
-			this.processStatus |= 0b10111111;
+			this.processStatus &= 0b10111111;
 		}
 
 		this.accumulator = !hasCarry ? 0 : result;
 		this.setZeroAndNegativeFlag(this.accumulator);
+	}
+
+	private CPM(address: number) {
+		const value = this.memoryMapProxy(address);
+
+		this.updateCompareFlags(this.accumulator, value);
+	}
+
+	private CPX(address: number) {
+		const value = this.memoryMapProxy(address);
+		
+		this.updateCompareFlags(this.X, value);
+	}
+
+	private CPY(address: number) {
+		const value = this.memoryMapProxy(address);
+
+		this.updateCompareFlags(this.Y, value);
+	}
+
+	private updateCompareFlags(register: number, memoryHeld: number) {
+		const result = register - memoryHeld;
+
+		if (register >= memoryHeld) {
+			this.processStatus |= 0b00000001;
+		}
+
+		if (register === memoryHeld) {
+			this.processStatus |= 0b00000010;
+		}
+
+		if ((result & 0b10000000) !== 0) {
+			this.processStatus |= 0b10000000;
+		}	
 	}
 }

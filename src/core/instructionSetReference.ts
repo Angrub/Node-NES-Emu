@@ -284,4 +284,124 @@ export const instructionSetReference: [number, InstructionReference][] = [
 		{ instruction: "BIT", addressingMode: AddressingMode.ABSOLUTE }
 	],
 	// Arithmetic Operations
+	[
+		Opcodes.ADC.IMMEDIATE,
+		{ instruction: "ADC", addressingMode: AddressingMode.IMMEDIATE }
+	],
+	[
+		Opcodes.ADC.ZERO_PAGE,
+		{ instruction: "ADC", addressingMode: AddressingMode.ZERO_PAGE }
+	],
+	[
+		Opcodes.ADC.ZERO_PAGE_X,
+		{ instruction: "ADC", addressingMode: AddressingMode.ZERO_PAGE_X }
+	],
+	[
+		Opcodes.ADC.ABSOLUTE,
+		{ instruction: "ADC", addressingMode: AddressingMode.ABSOLUTE }
+	],
+	[
+		Opcodes.ADC.ABSOLUTE_X,
+		{ instruction: "ADC", addressingMode: AddressingMode.ABSOLUTE_X }
+	],
+	[
+		Opcodes.ADC.ABSOLUTE_Y,
+		{ instruction: "ADC", addressingMode: AddressingMode.ABSOLUTE_Y }
+	],
+	[
+		Opcodes.ADC.INDIRECT_X,
+		{ instruction: "ADC", addressingMode: AddressingMode.INDIRECT_X }
+	],
+	[
+		Opcodes.ADC.INDIRECT_Y,
+		{ instruction: "ADC", addressingMode: AddressingMode.INDIRECT_Y }
+	],
+	[
+		Opcodes.SBC.IMMEDIATE,
+		{ instruction: "SBC", addressingMode: AddressingMode.IMMEDIATE }
+	],
+	[
+		Opcodes.SBC.ZERO_PAGE,
+		{ instruction: "SBC", addressingMode: AddressingMode.ZERO_PAGE }
+	],
+	[
+		Opcodes.SBC.ZERO_PAGE_X,
+		{ instruction: "SBC", addressingMode: AddressingMode.ZERO_PAGE_X }
+	],
+	[
+		Opcodes.SBC.ABSOLUTE,
+		{ instruction: "SBC", addressingMode: AddressingMode.ABSOLUTE }
+	],
+	[
+		Opcodes.SBC.ABSOLUTE_X,
+		{ instruction: "SBC", addressingMode: AddressingMode.ABSOLUTE_X }
+	],
+	[
+		Opcodes.SBC.ABSOLUTE_Y,
+		{ instruction: "SBC", addressingMode: AddressingMode.ABSOLUTE_Y }
+	],
+	[
+		Opcodes.SBC.INDIRECT_X,
+		{ instruction: "SBC", addressingMode: AddressingMode.INDIRECT_X }
+	],
+	[
+		Opcodes.SBC.INDIRECT_Y,
+		{ instruction: "SBC", addressingMode: AddressingMode.INDIRECT_Y }
+	],
+	[
+		Opcodes.CPM.IMMEDIATE,
+		{ instruction: "CPM", addressingMode: AddressingMode.IMMEDIATE }
+	],
+	[
+		Opcodes.CPM.ZERO_PAGE,
+		{ instruction: "CPM", addressingMode: AddressingMode.ZERO_PAGE }
+	],
+	[
+		Opcodes.CPM.ZERO_PAGE_X,
+		{ instruction: "CPM", addressingMode: AddressingMode.ZERO_PAGE_X }
+	],
+	[
+		Opcodes.CPM.ABSOLUTE,
+		{ instruction: "CPM", addressingMode: AddressingMode.ABSOLUTE }
+	],
+	[
+		Opcodes.CPM.ABSOLUTE_X,
+		{ instruction: "CPM", addressingMode: AddressingMode.ABSOLUTE_X }
+	],
+	[
+		Opcodes.CPM.ABSOLUTE_Y,
+		{ instruction: "CPM", addressingMode: AddressingMode.ABSOLUTE_Y }
+	],
+	[
+		Opcodes.CPM.INDIRECT_X,
+		{ instruction: "CPM", addressingMode: AddressingMode.INDIRECT_X }
+	],
+	[
+		Opcodes.CPM.INDIRECT_Y,
+		{ instruction: "CPM", addressingMode: AddressingMode.INDIRECT_Y }
+	],
+	[
+		Opcodes.CPX.IMMEDIATE,
+		{ instruction: "CPX", addressingMode: AddressingMode.IMMEDIATE }
+	],
+	[
+		Opcodes.CPX.ZERO_PAGE,
+		{ instruction: "CPX", addressingMode: AddressingMode.ZERO_PAGE }
+	],
+	[
+		Opcodes.CPX.ABSOLUTE,
+		{ instruction: "CPX", addressingMode: AddressingMode.ABSOLUTE }
+	],
+	[
+		Opcodes.CPY.IMMEDIATE,
+		{ instruction: "CPY", addressingMode: AddressingMode.IMMEDIATE }
+	],
+	[
+		Opcodes.CPY.ZERO_PAGE,
+		{ instruction: "CPY", addressingMode: AddressingMode.ZERO_PAGE }
+	],
+	[
+		Opcodes.CPY.ABSOLUTE,
+		{ instruction: "CPY", addressingMode: AddressingMode.ABSOLUTE }
+	],
 ];
