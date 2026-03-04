@@ -21,7 +21,7 @@ describe("CPM", () => {
 		microprocesor.run();
 
 		const snapshot = microprocesor.createSnapshot();
-		expect(snapshot.processStatus).toBe(0b00100001);
+		expect(snapshot.processStatus).toBe(0b00110001);
 	});
 
 	it("Zero flag", () => {
@@ -38,7 +38,7 @@ describe("CPM", () => {
 
 		const snapshot = microprocesor.createSnapshot();
 
-		expect(snapshot.processStatus).toBe(0b00100011);
+		expect(snapshot.processStatus).toBe(0b00110011);
 	});
 
 	it("Negative flag", () => {
@@ -55,7 +55,7 @@ describe("CPM", () => {
 
 		const snapshot = microprocesor.createSnapshot();
 
-		expect(snapshot.processStatus).toBe(0b10100000);
+		expect(snapshot.processStatus).toBe(0b10110000);
 	});
 
 	it("ZERO_PAGE", () => {
@@ -76,7 +76,7 @@ describe("CPM", () => {
 
 		const snapshot = microprocesor.createSnapshot();
 
-		expect(snapshot.processStatus).toBe(0b10100000);
+		expect(snapshot.processStatus).toBe(0b10110000);
 	});
 
 	it("ZERO_PAGE_X", () => {
@@ -99,7 +99,7 @@ describe("CPM", () => {
 
 		const snapshot = microprocesor.createSnapshot();
 
-		expect(snapshot.processStatus).toBe(0b10100000);
+		expect(snapshot.processStatus).toBe(0b10110000);
 	});
 
 	it("ABSOLUTE", () => {
@@ -122,7 +122,7 @@ describe("CPM", () => {
 
 		const snapshot = microprocesor.createSnapshot();
 
-		expect(snapshot.processStatus).toBe(0b10100000);
+		expect(snapshot.processStatus).toBe(0b10110000);
 	});
 
 	it("ABSOLUTE_X", () => {
@@ -147,7 +147,7 @@ describe("CPM", () => {
 
 		const snapshot = microprocesor.createSnapshot();
 
-		expect(snapshot.processStatus).toBe(0b10100000);
+		expect(snapshot.processStatus).toBe(0b10110000);
 	});
 
 	it("ABSOLUTE_Y", () => {
@@ -172,7 +172,7 @@ describe("CPM", () => {
 
 		const snapshot = microprocesor.createSnapshot();
 
-		expect(snapshot.processStatus).toBe(0b10100000);
+		expect(snapshot.processStatus).toBe(0b10110000);
 	});
 
 	it("INDIRECT_X", () => {
@@ -204,7 +204,7 @@ describe("CPM", () => {
 
 		const snapshot = microprocesor.createSnapshot();
 
-		expect(snapshot.processStatus).toBe(0b10100000);
+		expect(snapshot.processStatus).toBe(0b10110000);
 	});
 
 	it("INDIRECT_Y", () => {
@@ -236,6 +236,6 @@ describe("CPM", () => {
 
 		const snapshot = microprocesor.createSnapshot();
 
-		expect(snapshot.processStatus).toBe(0b10100000);
+		expect(snapshot.processStatus).toBe(0b10110000);
 	});
 });

@@ -21,7 +21,7 @@ describe("SBC", () => {
 		microprocesor.run();
 
 		const snapshot = microprocesor.createSnapshot();
-		expect(snapshot.processStatus).toBe(0b00100001);
+		expect(snapshot.processStatus).toBe(0b00110001);
 		expect(snapshot.accumulator).toBe(125);
 	});
 
@@ -39,7 +39,7 @@ describe("SBC", () => {
 
 		const snapshot = microprocesor.createSnapshot();
 
-		expect(snapshot.processStatus).toBe(0b00100011);
+		expect(snapshot.processStatus).toBe(0b00110011);
 		expect(snapshot.accumulator).toBe(0);
 	});
 
@@ -57,7 +57,7 @@ describe("SBC", () => {
 
 		const snapshot = microprocesor.createSnapshot();
 
-		expect(snapshot.processStatus).toBe(0b01100011);
+		expect(snapshot.processStatus).toBe(0b01110011);
 		expect(snapshot.accumulator).toBe(0);
 	});
 
@@ -75,7 +75,7 @@ describe("SBC", () => {
 
 		const snapshot = microprocesor.createSnapshot();
 
-		expect(snapshot.processStatus).toBe(0b10100001);
+		expect(snapshot.processStatus).toBe(0b10110001);
 		expect(snapshot.accumulator).toBe(128);
 	});
 

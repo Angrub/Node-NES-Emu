@@ -24,7 +24,7 @@ describe("BIT", () => {
 
 		const snapshot = microprocesor.createSnapshot();
 
-		expect(snapshot.processStatus).toBe(0b00100010);
+		expect(snapshot.processStatus).toBe(0b00110010);
 	});
 
 	it("Negative flag", () => {
@@ -45,7 +45,7 @@ describe("BIT", () => {
 
 		const snapshot = microprocesor.createSnapshot();
 
-		expect(snapshot.processStatus).toBe(0b10100000);
+		expect(snapshot.processStatus).toBe(0b10110000);
 	});
 
 	it("Overflow flag", () => {
@@ -66,7 +66,7 @@ describe("BIT", () => {
 
 		const snapshot = microprocesor.createSnapshot();
 
-		expect(snapshot.processStatus).toBe(0b01100000);
+		expect(snapshot.processStatus).toBe(0b01110000);
 	});
 
 	it("ZERO_PAGE", () => {

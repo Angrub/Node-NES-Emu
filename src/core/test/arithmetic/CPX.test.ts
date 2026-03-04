@@ -21,7 +21,7 @@ describe("CPX", () => {
 		microprocesor.run();
 
 		const snapshot = microprocesor.createSnapshot();
-		expect(snapshot.processStatus).toBe(0b00100001);
+		expect(snapshot.processStatus).toBe(0b00110001);
 	});
 
 	it("Zero flag", () => {
@@ -38,7 +38,7 @@ describe("CPX", () => {
 
 		const snapshot = microprocesor.createSnapshot();
 
-		expect(snapshot.processStatus).toBe(0b00100011);
+		expect(snapshot.processStatus).toBe(0b00110011);
 	});
 
 	it("Negative flag", () => {
@@ -55,7 +55,7 @@ describe("CPX", () => {
 
 		const snapshot = microprocesor.createSnapshot();
 
-		expect(snapshot.processStatus).toBe(0b10100000);
+		expect(snapshot.processStatus).toBe(0b10110000);
 	});
 
 	it("ZERO_PAGE", () => {
@@ -76,7 +76,7 @@ describe("CPX", () => {
 
 		const snapshot = microprocesor.createSnapshot();
 
-		expect(snapshot.processStatus).toBe(0b10100000);
+		expect(snapshot.processStatus).toBe(0b10110000);
 	});
 
 	it("ABSOLUTE", () => {
@@ -99,6 +99,6 @@ describe("CPX", () => {
 
 		const snapshot = microprocesor.createSnapshot();
 
-		expect(snapshot.processStatus).toBe(0b10100000);
+		expect(snapshot.processStatus).toBe(0b10110000);
 	});
 });

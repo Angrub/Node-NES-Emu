@@ -20,7 +20,7 @@ describe("LDY", () => {
 
 		const snapshot = microprocesor.createSnapshot();
 
-		expect(snapshot.processStatus).toBe(0b00100010);
+		expect(snapshot.processStatus).toBe(0b00110010);
 		expect(snapshot.Y).toBe(0);
 	});
 
@@ -36,7 +36,7 @@ describe("LDY", () => {
 
 		const snapshot = microprocesor.createSnapshot();
 
-		expect(snapshot.processStatus).toBe(0b10100000);
+		expect(snapshot.processStatus).toBe(0b10110000);
 		expect(snapshot.Y).toBe(128);
 	});
 

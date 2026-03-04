@@ -234,6 +234,7 @@ export class MOS6502 {
 
 	private BRK() {
 		this.cpuHalted = true;
+		this.processStatus |= 0b00010000;
 	}
 
 	// Load/Store Operations

@@ -21,7 +21,8 @@ describe("ADC", () => {
 		microprocesor.run();
 
 		const snapshot = microprocesor.createSnapshot();
-		expect(snapshot.processStatus).toBe(0b00100001);
+
+		expect(snapshot.processStatus).toBe(0b00110001);
 		expect(snapshot.accumulator).toBe(1);
 	});
 
@@ -39,7 +40,7 @@ describe("ADC", () => {
 
 		const snapshot = microprocesor.createSnapshot();
 
-		expect(snapshot.processStatus).toBe(0b00100011);
+		expect(snapshot.processStatus).toBe(0b00110011);
 		expect(snapshot.accumulator).toBe(0);
 	});
 
@@ -57,7 +58,7 @@ describe("ADC", () => {
 
 		const snapshot = microprocesor.createSnapshot();
 
-		expect(snapshot.processStatus).toBe(0b11100000);
+		expect(snapshot.processStatus).toBe(0b11110000);
 		expect(snapshot.accumulator).toBe(128);
 	});
 
@@ -75,7 +76,7 @@ describe("ADC", () => {
 
 		const snapshot = microprocesor.createSnapshot();
 
-		expect(snapshot.processStatus).toBe(0b11100000);
+		expect(snapshot.processStatus).toBe(0b11110000);
 		expect(snapshot.accumulator).toBe(128);
 	});
 

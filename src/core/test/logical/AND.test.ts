@@ -22,7 +22,7 @@ describe("AND", () => {
 
 		const snapshot = microprocesor.createSnapshot();
 
-		expect(snapshot.processStatus).toBe(0b00100010);
+		expect(snapshot.processStatus).toBe(0b00110010);
 		expect(snapshot.accumulator).toBe(0);
 	});
 
@@ -40,7 +40,7 @@ describe("AND", () => {
 
 		const snapshot = microprocesor.createSnapshot();
 
-		expect(snapshot.processStatus).toBe(0b10100000);
+		expect(snapshot.processStatus).toBe(0b10110000);
 		expect(snapshot.accumulator).toBe(128);
 	});
 
