@@ -404,4 +404,52 @@ export const instructionSetReference: [number, InstructionReference][] = [
 		Opcodes.CPY.ABSOLUTE,
 		{ instruction: "CPY", addressingMode: AddressingMode.ABSOLUTE }
 	],
+	[
+		Opcodes.INC.ZERO_PAGE,
+		{ instruction: "INC", addressingMode: AddressingMode.ZERO_PAGE }
+	],
+	[
+		Opcodes.INC.ZERO_PAGE_X,
+		{ instruction: "INC", addressingMode: AddressingMode.ZERO_PAGE_X }
+	],
+	[
+		Opcodes.INC.ABSOLUTE,
+		{ instruction: "INC", addressingMode: AddressingMode.ABSOLUTE }
+	],
+	[
+		Opcodes.INC.ABSOLUTE_X,
+		{ instruction: "INC", addressingMode: AddressingMode.ABSOLUTE_X }
+	],
+	[
+		Opcodes.INX.IMPLICIT,
+		{ instruction: "INX", addressingMode: AddressingMode.IMPLICIT }
+	],
+	[
+		Opcodes.INY.IMPLICIT,
+		{ instruction: "INY", addressingMode: AddressingMode.IMPLICIT }
+	],
+	[
+		Opcodes.DEC.ZERO_PAGE,
+		{ instruction: "DEC", addressingMode: AddressingMode.ZERO_PAGE }
+	],
+	[
+		Opcodes.DEC.ZERO_PAGE_X,
+		{ instruction: "DEC", addressingMode: AddressingMode.ZERO_PAGE_X }
+	],
+	[
+		Opcodes.DEC.ABSOLUTE,
+		{ instruction: "DEC", addressingMode: AddressingMode.ABSOLUTE }
+	],
+	[
+		Opcodes.DEC.ABSOLUTE_X,
+		{ instruction: "DEC", addressingMode: AddressingMode.ABSOLUTE_X }
+	],
+	[
+		Opcodes.DEX.IMPLICIT,
+		{ instruction: "DEX", addressingMode: AddressingMode.IMPLICIT }
+	],
+	[
+		Opcodes.DEY.IMPLICIT,
+		{ instruction: "DEY", addressingMode: AddressingMode.IMPLICIT }
+	],
 ];

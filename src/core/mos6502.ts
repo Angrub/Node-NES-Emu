@@ -448,4 +448,68 @@ export class MOS6502 {
 			this.processStatus |= 0b10000000;
 		}	
 	}
+
+	private INC(address: number) {
+		const value = this.memoryMapProxy(address);
+		let incremented = value + 1;
+
+		if (incremented > 255) {
+			incremented -= 256;
+		}
+
+		this.memoryMapProxy(address, incremented);
+		this.setZeroAndNegativeFlag(incremented);
+	}
+
+	private INX() {
+		this.X++;
+
+		if (this.X > 255) {
+			this.X -= 256;
+		}
+
+		this.setZeroAndNegativeFlag(this.X);
+	}
+
+	private INY() {
+		this.Y++;
+
+		if (this.Y > 255) {
+			this.Y -= 256;
+		}
+
+		this.setZeroAndNegativeFlag(this.Y);
+	}
+
+	private DEC(address: number) {
+		const value = this.memoryMapProxy(address);
+		let incremented = value - 1;
+
+		if (incremented < 0) {
+			incremented += 256;
+		}
+
+		this.memoryMapProxy(address, incremented);
+		this.setZeroAndNegativeFlag(incremented);
+	}
+
+	private DEX() {
+		this.X--;
+
+		if (this.X < 0) {
+			this.X += 256;
+		}
+
+		this.setZeroAndNegativeFlag(this.X);
+	}
+
+	private DEY() {
+		this.Y--;
+
+		if (this.Y < 0) {
+			this.Y += 256;
+		}
+
+		this.setZeroAndNegativeFlag(this.Y);
+	}
 }

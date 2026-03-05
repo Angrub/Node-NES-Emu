@@ -24,7 +24,13 @@ export type MOS6502instruction =
 	| "SBC"
 	| "CPM"
 	| "CPX"
-	| "CPY";
+	| "CPY"
+	| "INC"
+	| "INX"
+	| "INY"
+	| "DEC"
+	| "DEX"
+	| "DEY";
 
 export type MOS6502SnapShot = {
 	cpuHalted: boolean;

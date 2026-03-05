@@ -154,5 +154,29 @@ export const Opcodes = {
 		IMMEDIATE: 0xc0,
 		ZERO_PAGE: 0xc4,
 		ABSOLUTE: 0xcc,
+	},
+	INC: {
+		ZERO_PAGE: 0xe6,
+		ZERO_PAGE_X: 0xf6,
+		ABSOLUTE: 0xee,
+		ABSOLUTE_X: 0xfe
+	},
+	INX: {
+		IMPLICIT: 0xe8
+	},
+	INY: {
+		IMPLICIT: 0xc8
+	},
+	DEC: {
+		ZERO_PAGE: 0xc6,
+		ZERO_PAGE_X: 0xd6,
+		ABSOLUTE: 0xce,
+		ABSOLUTE_X: 0xde
+	},
+	DEX: {
+		IMPLICIT: 0xca
+	},
+	DEY: {
+		IMPLICIT: 0x88
 	}
 };
