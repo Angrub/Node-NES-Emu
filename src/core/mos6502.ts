@@ -431,22 +431,22 @@ export class MOS6502 {
 	private CPM(address: number) {
 		const value = this.memoryMapProxy(address);
 
-		this.updateCompareFlags(this.accumulator, value);
+		this.updateCompareInstructionsFlags(this.accumulator, value);
 	}
 
 	private CPX(address: number) {
 		const value = this.memoryMapProxy(address);
 
-		this.updateCompareFlags(this.X, value);
+		this.updateCompareInstructionsFlags(this.X, value);
 	}
 
 	private CPY(address: number) {
 		const value = this.memoryMapProxy(address);
 
-		this.updateCompareFlags(this.Y, value);
+		this.updateCompareInstructionsFlags(this.Y, value);
 	}
 
-	private updateCompareFlags(register: number, memoryHeld: number) {
+	private updateCompareInstructionsFlags(register: number, memoryHeld: number) {
 		const result = register - memoryHeld;
 
 		if (register >= memoryHeld) {
