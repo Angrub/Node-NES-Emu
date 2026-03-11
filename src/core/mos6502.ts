@@ -253,22 +253,22 @@ export class MOS6502 {
 	// Load/Store Operations
 
 	private LDA(address: number) {
-		const value = this.memoryMapProxy(address);
-		this.accumulator = value;
+		const memoryContent = this.memoryMapProxy(address);
+		this.accumulator = memoryContent;
 
 		this.setZeroAndNegativeFlag(this.accumulator);
 	}
 
 	private LDX(address: number) {
-		const value = this.memoryMapProxy(address);
-		this.X = value;
+		const memoryContent = this.memoryMapProxy(address);
+		this.X = memoryContent;
 
 		this.setZeroAndNegativeFlag(this.X);
 	}
 
 	private LDY(address: number) {
-		const value = this.memoryMapProxy(address);
-		this.Y = value;
+		const memoryContent = this.memoryMapProxy(address);
+		this.Y = memoryContent;
 
 		this.setZeroAndNegativeFlag(this.Y);
 	}
@@ -342,44 +342,44 @@ export class MOS6502 {
 	// Logical Operations
 
 	private AND(address: number) {
-		const value = this.memoryMapProxy(address);
-		this.accumulator &= value;
+		const memoryContent = this.memoryMapProxy(address);
+		this.accumulator &= memoryContent;
 
 		this.setZeroAndNegativeFlag(this.accumulator);
 	}
 
 	private EOR(address: number) {
-		const value = this.memoryMapProxy(address);
-		this.accumulator ^= value;
+		const memoryContent = this.memoryMapProxy(address);
+		this.accumulator ^= memoryContent;
 
 		this.setZeroAndNegativeFlag(this.accumulator);
 	}
 
 	private ORA(address: number) {
-		const value = this.memoryMapProxy(address);
-		this.accumulator |= value;
+		const memoryContent = this.memoryMapProxy(address);
+		this.accumulator |= memoryContent;
 
 		this.setZeroAndNegativeFlag(this.accumulator);
 	}
 
 	private BIT(address: number) {
-		const value = this.memoryMapProxy(address);
-		const result = this.accumulator & value;
+		const memoryContent = this.memoryMapProxy(address);
+		const result = this.accumulator & memoryContent;
 
 		if (result === 0) {
 			this.processStatus |= 0b00000010;
 		}
 
-		this.processStatus |= value & 0b11000000;
+		this.processStatus |= memoryContent & 0b11000000;
 	}
 
 	// Arithmetic Operations
 
 	private ADC(address: number) {
-		const value = this.memoryMapProxy(address);
+		const memoryContent = this.memoryMapProxy(address);
 		let hasCarry = false;
 
-		const result = this.accumulator + value + (this.processStatus & 0b00000001);
+		const result = this.accumulator + memoryContent + (this.processStatus & 0b00000001);
 
 		if (result > 255) {
 			hasCarry = true;
@@ -389,7 +389,7 @@ export class MOS6502 {
 		}
 
 		const overflow =
-			~(this.accumulator ^ value) & (this.accumulator ^ result) & 0b10000000;
+			~(this.accumulator ^ memoryContent) & (this.accumulator ^ result) & 0b10000000;
 
 		if (overflow !== 0) {
 			this.processStatus |= 0b01000000;
@@ -402,11 +402,11 @@ export class MOS6502 {
 	}
 
 	private SBC(address: number) {
-		const value = this.memoryMapProxy(address);
+		const memoryContent = this.memoryMapProxy(address);
 		let hasCarry = false;
 
 		const result =
-			this.accumulator - value - (1 - (this.processStatus & 0b00000001));
+			this.accumulator - memoryContent - (1 - (this.processStatus & 0b00000001));
 
 		if (result >= 0) {
 			hasCarry = true;
@@ -416,7 +416,7 @@ export class MOS6502 {
 		}
 
 		const overflow =
-			~(this.accumulator ^ value) & (this.accumulator ^ result) & 0b10000000;
+			~(this.accumulator ^ memoryContent) & (this.accumulator ^ result) & 0b10000000;
 
 		if (overflow !== 0) {
 			this.processStatus |= 0b01000000;
@@ -429,21 +429,21 @@ export class MOS6502 {
 	}
 
 	private CPM(address: number) {
-		const value = this.memoryMapProxy(address);
+		const memoryContent = this.memoryMapProxy(address);
 
-		this.updateCompareInstructionsFlags(this.accumulator, value);
+		this.updateCompareInstructionsFlags(this.accumulator, memoryContent);
 	}
 
 	private CPX(address: number) {
-		const value = this.memoryMapProxy(address);
+		const memoryContent = this.memoryMapProxy(address);
 
-		this.updateCompareInstructionsFlags(this.X, value);
+		this.updateCompareInstructionsFlags(this.X, memoryContent);
 	}
 
 	private CPY(address: number) {
-		const value = this.memoryMapProxy(address);
+		const memoryContent = this.memoryMapProxy(address);
 
-		this.updateCompareInstructionsFlags(this.Y, value);
+		this.updateCompareInstructionsFlags(this.Y, memoryContent);
 	}
 
 	private updateCompareInstructionsFlags(register: number, memoryHeld: number) {
@@ -465,8 +465,8 @@ export class MOS6502 {
 	// Increments and Decrements Operations
 
 	private INC(address: number) {
-		const value = this.memoryMapProxy(address);
-		let incremented = value + 1;
+		const memoryContent = this.memoryMapProxy(address);
+		let incremented = memoryContent + 1;
 
 		if (incremented > 255) {
 			incremented -= 256;
@@ -497,8 +497,8 @@ export class MOS6502 {
 	}
 
 	private DEC(address: number) {
-		const value = this.memoryMapProxy(address);
-		let incremented = value - 1;
+		const memoryContent = this.memoryMapProxy(address);
+		let incremented = memoryContent - 1;
 
 		if (incremented < 0) {
 			incremented += 256;
