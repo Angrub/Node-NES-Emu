@@ -151,9 +151,14 @@ export class MOS6502 {
 
 	private resolveAddressingMode(mode: AddressingMode) {
 		switch (mode) {
+			case AddressingMode.ACCUMULATOR: {
+				// Only shifts instrucctions use this addressing mode
+				this.programCounter++;
+				return -1;
+			}
 			case AddressingMode.IMPLICIT: {
 				this.programCounter++;
-				return 0x0;
+				return -1;
 			}
 			case AddressingMode.IMMEDIATE: {
 				const address = this.programCounter + 1;
@@ -227,9 +232,17 @@ export class MOS6502 {
 			this.processStatus |= 0b00000010;
 		}
 
-		if ((register & 0b10000000) !== 0) {
+		if (this.isSevenBitActive(register)) {
 			this.processStatus |= 0b10000000;
 		}
+	}
+
+	private isSevenBitActive(value: number) {
+		return (value & 0b10000000) !== 0;
+	}
+
+	private isZeroFlagActive(value: number) {
+		return (value & 0b00000001) !== 0;
 	}
 
 	private BRK() {
@@ -423,7 +436,7 @@ export class MOS6502 {
 
 	private CPX(address: number) {
 		const value = this.memoryMapProxy(address);
-		
+
 		this.updateCompareFlags(this.X, value);
 	}
 
@@ -444,10 +457,12 @@ export class MOS6502 {
 			this.processStatus |= 0b00000010;
 		}
 
-		if ((result & 0b10000000) !== 0) {
+		if (this.isSevenBitActive(result)) {
 			this.processStatus |= 0b10000000;
-		}	
+		}
 	}
+
+	// Increments and Decrements Operations
 
 	private INC(address: number) {
 		const value = this.memoryMapProxy(address);
@@ -511,5 +526,109 @@ export class MOS6502 {
 		}
 
 		this.setZeroAndNegativeFlag(this.Y);
+	}
+
+	private ASL(address: number) {
+		if (address < 0) {
+			if (this.isSevenBitActive(this.accumulator)) {
+				this.processStatus |= 0b00000001;
+			}
+
+			this.accumulator <<= 1;
+			this.accumulator &= 0b011111111;
+
+			this.setZeroAndNegativeFlag(this.accumulator);
+		} else {
+			let memoryContent = this.memoryMapProxy(address);
+
+			if (this.isSevenBitActive(memoryContent)) {
+				this.processStatus |= 0b00000001;
+			}
+
+			memoryContent <<= 1;
+			memoryContent &= 0b011111111;
+
+			this.memoryMapProxy(address, memoryContent);
+			this.setZeroAndNegativeFlag(memoryContent);
+		}
+	}
+
+	private LSR(address: number) {
+		if (address < 0) {
+			if (this.isZeroFlagActive(this.accumulator)) {
+				this.processStatus |= 0b00000001;
+			}
+
+			this.accumulator >>= 1;
+
+			this.setZeroAndNegativeFlag(this.accumulator);
+		} else {
+			let memoryContent = this.memoryMapProxy(address);
+
+			if (this.isZeroFlagActive(memoryContent)) {
+				this.processStatus |= 0b00000001;
+			}
+
+			memoryContent >>= 1;
+
+			this.memoryMapProxy(address, memoryContent);
+			this.setZeroAndNegativeFlag(memoryContent);
+		}
+	}
+
+	private ROL(address: number) {
+		const hasCarry = this.isZeroFlagActive(this.processStatus);
+
+		if (address < 0) {
+			if (this.isSevenBitActive(this.accumulator)) {
+				this.processStatus |= 0b00000001;
+			}
+
+			this.accumulator <<= 1;
+			if (hasCarry) this.accumulator |= 0b00000001;
+			this.accumulator &= 0b011111111;
+
+			this.setZeroAndNegativeFlag(this.accumulator);
+		} else {
+			let memoryContent = this.memoryMapProxy(address);
+
+			if (this.isSevenBitActive(memoryContent)) {
+				this.processStatus |= 0b00000001;
+			}
+
+			memoryContent <<= 1;
+			if (hasCarry) memoryContent |= 0b00000001;
+			memoryContent &= 0b011111111;
+
+			this.memoryMapProxy(address, memoryContent);
+			this.setZeroAndNegativeFlag(memoryContent);
+		}
+	}
+
+	private ROR(address: number) {
+		const hasCarry = this.isZeroFlagActive(this.processStatus);
+
+		if (address < 0) {
+			if (this.isZeroFlagActive(this.accumulator)) {
+				this.processStatus |= 0b00000001;
+			}
+
+			this.accumulator >>= 1;
+			if (hasCarry) this.accumulator |= 0b10000000;
+
+			this.setZeroAndNegativeFlag(this.accumulator);
+		} else {
+			let memoryContent = this.memoryMapProxy(address);
+
+			if (this.isZeroFlagActive(memoryContent)) {
+				this.processStatus |= 0b00000001;
+			}
+
+			memoryContent >>= 1;
+			if (hasCarry) memoryContent |= 0b10000000;
+
+			this.memoryMapProxy(address, memoryContent);
+			this.setZeroAndNegativeFlag(memoryContent);
+		}
 	}
 }

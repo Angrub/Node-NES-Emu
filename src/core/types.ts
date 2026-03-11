@@ -30,7 +30,11 @@ export type MOS6502instruction =
 	| "INY"
 	| "DEC"
 	| "DEX"
-	| "DEY";
+	| "DEY"
+	| "ASL"
+	| "LSR"
+	| "ROL"
+	| "ROR";
 
 export type MOS6502SnapShot = {
 	cpuHalted: boolean;
@@ -45,6 +49,7 @@ export type MOS6502SnapShot = {
 };
 
 export enum AddressingMode {
+	ACCUMULATOR = "ACCUMULATOR",
 	IMPLICIT = "IMPLICIT",
 	IMMEDIATE = "IMMEDIATE",
 	ZERO_PAGE = "ZERO_PAGE",

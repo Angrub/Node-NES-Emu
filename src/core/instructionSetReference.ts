@@ -404,6 +404,7 @@ export const instructionSetReference: [number, InstructionReference][] = [
 		Opcodes.CPY.ABSOLUTE,
 		{ instruction: "CPY", addressingMode: AddressingMode.ABSOLUTE }
 	],
+	// Increments and decrements Operations
 	[
 		Opcodes.INC.ZERO_PAGE,
 		{ instruction: "INC", addressingMode: AddressingMode.ZERO_PAGE }
@@ -452,4 +453,85 @@ export const instructionSetReference: [number, InstructionReference][] = [
 		Opcodes.DEY.IMPLICIT,
 		{ instruction: "DEY", addressingMode: AddressingMode.IMPLICIT }
 	],
+	// Shifts Operations
+	[
+		Opcodes.ASL.ACCUMULATOR,
+		{ instruction: "ASL", addressingMode: AddressingMode.ACCUMULATOR}
+	],
+	[
+		Opcodes.ASL.ZERO_PAGE,
+		{ instruction: "ASL", addressingMode: AddressingMode.ZERO_PAGE}
+	],
+	[
+		Opcodes.ASL.ZERO_PAGE_X,
+		{ instruction: "ASL", addressingMode: AddressingMode.ZERO_PAGE_X}
+	],
+	[
+		Opcodes.ASL.ABSOLUTE,
+		{ instruction: "ASL", addressingMode: AddressingMode.ABSOLUTE}
+	],
+	[
+		Opcodes.ASL.ABSOLUTE_X,
+		{ instruction: "ASL", addressingMode: AddressingMode.ABSOLUTE_X}
+	],
+	[
+		Opcodes.LSR.ACCUMULATOR,
+		{ instruction: "LSR", addressingMode: AddressingMode.ACCUMULATOR}
+	],
+	[
+		Opcodes.LSR.ZERO_PAGE,
+		{ instruction: "LSR", addressingMode: AddressingMode.ZERO_PAGE}
+	],
+	[
+		Opcodes.LSR.ZERO_PAGE_X,
+		{ instruction: "LSR", addressingMode: AddressingMode.ZERO_PAGE_X}
+	],
+	[
+		Opcodes.LSR.ABSOLUTE,
+		{ instruction: "LSR", addressingMode: AddressingMode.ABSOLUTE}
+	],
+	[
+		Opcodes.LSR.ABSOLUTE_X,
+		{ instruction: "LSR", addressingMode: AddressingMode.ABSOLUTE_X}
+	],
+	[
+		Opcodes.ROL.ACCUMULATOR,
+		{ instruction: "ROL", addressingMode: AddressingMode.ACCUMULATOR}
+	],
+	[
+		Opcodes.ROL.ZERO_PAGE,
+		{ instruction: "ROL", addressingMode: AddressingMode.ZERO_PAGE}
+	],
+	[
+		Opcodes.ROL.ZERO_PAGE_X,
+		{ instruction: "ROL", addressingMode: AddressingMode.ZERO_PAGE_X}
+	],
+	[
+		Opcodes.ROL.ABSOLUTE,
+		{ instruction: "ROL", addressingMode: AddressingMode.ABSOLUTE}
+	],
+	[
+		Opcodes.ROL.ABSOLUTE_X,
+		{ instruction: "ROL", addressingMode: AddressingMode.ABSOLUTE_X}
+	],
+	[
+		Opcodes.ROR.ACCUMULATOR,
+		{ instruction: "ROR", addressingMode: AddressingMode.ACCUMULATOR}
+	],
+	[
+		Opcodes.ROR.ZERO_PAGE,
+		{ instruction: "ROR", addressingMode: AddressingMode.ZERO_PAGE}
+	],
+	[
+		Opcodes.ROR.ZERO_PAGE_X,
+		{ instruction: "ROR", addressingMode: AddressingMode.ZERO_PAGE_X}
+	],
+	[
+		Opcodes.ROR.ABSOLUTE,
+		{ instruction: "ROR", addressingMode: AddressingMode.ABSOLUTE}
+	],
+	[
+		Opcodes.ROR.ABSOLUTE_X,
+		{ instruction: "ROR", addressingMode: AddressingMode.ABSOLUTE_X}
+	]
 ];

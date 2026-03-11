@@ -178,5 +178,33 @@ export const Opcodes = {
 	},
 	DEY: {
 		IMPLICIT: 0x88
-	}
+	},
+	ASL: {
+		ACCUMULATOR: 0x0a,
+		ZERO_PAGE: 0x06,
+		ZERO_PAGE_X: 0x16,
+		ABSOLUTE: 0x0e,
+		ABSOLUTE_X: 0x1e
+	},
+	LSR: {
+		ACCUMULATOR: 0x4a,
+		ZERO_PAGE: 0x46,
+		ZERO_PAGE_X: 0x56,
+		ABSOLUTE: 0x4e,
+		ABSOLUTE_X: 0x5e
+	},
+	ROL: {
+		ACCUMULATOR: 0x2a,
+		ZERO_PAGE: 0x26,
+		ZERO_PAGE_X: 0x36,
+		ABSOLUTE: 0x2e,
+		ABSOLUTE_X: 0x3e
+	},
+	ROR: {
+		ACCUMULATOR: 0x6a,
+		ZERO_PAGE: 0x66,
+		ZERO_PAGE_X: 0x76,
+		ABSOLUTE: 0x6e,
+		ABSOLUTE_X: 0x7e
+	},
 };
